@@ -1,0 +1,369 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:local="clr-namespace:GradeExpertCRM.Views.Frames"
+             x:Class="GradeExpertCRM.Views.Frames.CalculationDataView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1.5*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Margin="5 0 5 10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    MaxHeight="100"
+                    IsEnabled="{Binding IsButtonEnabled}"
+                    Command="{Binding ScrollLeft}">
+                <Image Source="avares://GradeExpertCRM/Resources/buttonListLeft.png" />
+            </Button>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    MaxHeight="200"
+                    IsEnabled="{Binding IsButtonEnabled}"
+                    Command="{Binding SelectDetail}"
+                    CommandParameter="image0">
+                <Image Source="{Binding CarImage0}" />
+            </Button>
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    MaxHeight="200"
+                    IsEnabled="{Binding IsButtonEnabled}"
+                    Command="{Binding SelectDetail}"
+                    CommandParameter="image1">
+                <Image Source="{Binding CarImage1}" />
+            </Button>
+            <Button Grid.Row="0"
+                    Grid.Column="3"
+                    MaxHeight="200"
+                    IsEnabled="{Binding IsButtonEnabled}"
+                    Command="{Binding SelectDetail}"
+                    CommandParameter="image2">
+                <Image Source="{Binding CarImage2}" />
+            </Button>
+            <Button Grid.Row="0"
+                    Grid.Column="4"
+                    MaxHeight="200"
+                    IsEnabled="{Binding IsButtonEnabled}"
+                    Command="{Binding SelectDetail}"
+                    CommandParameter="image3">
+                <Image Source="{Binding CarImage3}" />
+            </Button>
+            <Button Grid.Row="0"
+                    Grid.Column="5"
+                    MaxHeight="100"
+                    IsEnabled="{Binding IsButtonEnabled}"
+                    Command="{Binding ScrollRight}">
+                <Image Source="avares://GradeExpertCRM/Resources/buttonListRight.png" />
+            </Button>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding CarImageDescription0}"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       FontFamily="Calibry"
+                       FontSize="12" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="2"
+                       Text="{Binding CarImageDescription1}"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       FontFamily="Calibry"
+                       FontSize="12" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="3"
+                       Text="{Binding CarImageDescription2}"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       FontFamily="Calibry"
+                       FontSize="12" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="4"
+                       Text="{Binding CarImageDescription3}"
+                       TextAlignment="Center"
+                       Foreground="#000000"
+                       FontFamily="Calibry"
+                       FontSize="12" />
+        </Grid>
+
+        <DataGrid Grid.Row="1" Items="{Binding Calculations}"
+                  IsReadOnly="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ComponentName}"
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.Detail, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding DentQuantity}"
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.QuantityBriefly, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding DentDiameter}"
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.DN, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding TypeOfRepairString}"
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.TypeOfRepair, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridCheckBoxColumn Binding="{Binding IsAluminum}"
+                                        IsReadOnly="False">
+                    <DataGridCheckBoxColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.AluminumBriefly, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+                <DataGridCheckBoxColumn Binding="{Binding IsAdhesive}"
+                                        IsReadOnly="True">
+                    <DataGridCheckBoxColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.Glue, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+                <DataGridCheckBoxColumn Binding="{Binding IsDismantling}"
+                                        IsReadOnly="True">
+                    <DataGridCheckBoxColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.Dismantling, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn Binding="{Binding NHours}"
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.NHours, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding DentPrice}"
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Header>
+                        <TextBlock
+                            Text="{Binding DataContext.Localization.Price, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Command="{Binding DataContext.ChangeCommand,
+                                    RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}"
+                                    CommandParameter="{Binding}">
+                                    <TextBlock
+                                        Text="{Binding DataContext.Localization.Change,
+                                        RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}" />
+                                </Button>
+                                <Button
+                                    Command="{Binding DataContext.DeleteCommand,
+                                    RelativeSource={RelativeSource AncestorType={x:Type local:CalculationDataView}}}"
+                                    CommandParameter="{Binding}">
+                                    <Image Source="avares://GradeExpertCRM/Resources/cross.png" />
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2"
+              Margin="10 0 10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Margin="10 5 10 0">
+                    
+                    <CheckBox IsChecked="{Binding ToolPreparingCheckBox, Mode=TwoWay}"
+                              IsEnabled="{Binding IsButtonEnabled}"
+                              Margin="0 0 0 5">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.TextBoxToolPreparing}" />
+                    </CheckBox >
+                    
+                    <CheckBox IsChecked="{Binding AntiCorrosionTreatmentCheckBox, Mode=TwoWay}"
+                              IsEnabled="{Binding IsButtonEnabled}"
+                              Margin="0 0 0 5">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.TextBoxAntiCorrosionTreatment}" />
+                    </CheckBox>
+                    
+                    <CheckBox IsChecked="{Binding BoxFinishingTreatmentCheckBox, Mode=TwoWay}"
+                              IsEnabled="{Binding IsButtonEnabled}"
+                              Margin="0 0 0 5">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.TextBoxFinishingTreatment}" />
+                    </CheckBox>
+                    
+                    <CheckBox IsChecked="{Binding TechnicalWashCheckBox, Mode=TwoWay}"
+                              IsEnabled="{Binding IsButtonEnabled}"
+                              Margin="0 0 0 5">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.TextBoxTechnicalWash}" />
+                    </CheckBox>
+                    
+                    <CheckBox IsChecked="{Binding SalonCleaningCheckBox, Mode=TwoWay}"
+                              IsEnabled="{Binding IsButtonEnabled}"
+                              Margin="0 0 0 5">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.TextBoxSalonCleaning}" />
+                    </CheckBox>
+                    <!-- <RadioButton GroupName="Type" -->
+                    <!--              IsChecked="True" -->
+                    <!--              Margin="0 0 0 5"> -->
+                    <!--     <TextBlock Classes="Text" -->
+                    <!--                Text="{Binding Localization.PreparingForWork}" /> -->
+                    <!-- </RadioButton> -->
+                    <!-- <RadioButton GroupName="Type"> -->
+                    <!--     <TextBlock Classes="Text" -->
+                    <!--                Text="{Binding Localization.TextBoxAntiCorrosionTreatment}" /> -->
+                    <!-- </RadioButton> -->
+                </StackPanel>
+
+                <!-- <Button Grid.Row="1" -->
+                <!--         Grid.Column="0" -->
+                <!--         Classes="Menu" -->
+                <!--         Content="{Binding Localization.ButtonSave}" /> -->
+
+                <!-- <Button Grid.Row="1" -->
+                <!--         Grid.Column="1" -->
+                <!--         Classes="Menu" -->
+                <!--         Content="{Binding Localization.Change}" /> -->
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="0 10 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Classes="Text"
+                           TextAlignment="Right"
+                           Text="{Binding Localization.RepairOfDents}" />
+                <TextBlock Grid.Column="0" Grid.Row="1"
+                           Classes="Text"
+                           TextAlignment="Right"
+                           Text="{Binding Localization.Dismantling}" />
+                <TextBlock Grid.Column="0" Grid.Row="2"
+                           Classes="Text"
+                           TextAlignment="Right"
+                           Text="{Binding Localization.SpareParts}" />
+                <TextBlock Grid.Column="0" Grid.Row="3"
+                           Classes="Text"
+                           TextAlignment="Right"
+                           Text="{Binding Localization.PriceOfPainting}" />
+                <TextBlock Grid.Column="0" Grid.Row="4"
+                           Classes="Text"
+                           TextAlignment="Right"
+                           Text="{Binding Localization.AdditionalWorks}" />
+                <TextBlock Grid.Column="0" Grid.Row="5"
+                           Classes="Text"
+                           TextAlignment="Right"
+                           Text="{Binding Localization.TotalPrice}" />
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           Classes="Text"
+                           Foreground="#000000"
+                           Text="{Binding DentRepairPrice}" />
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                           Classes="Text"
+                           Foreground="#000000"
+                           Text="{Binding DismantlingPrice}" />
+                <TextBlock Grid.Row="2" Grid.Column="1"
+                           Classes="Text"
+                           Foreground="#000000"
+                           Text="{Binding SparePartsPrice}" />
+                <TextBlock Grid.Row="3" Grid.Column="1"
+                           Classes="Text"
+                           Foreground="#000000"
+                           Text="{Binding PaintingPrice}" />
+                <TextBlock Grid.Row="4" Grid.Column="1"
+                           Classes="Text"
+                           Foreground="#000000"
+                           Text="{Binding AdditionalWorksPrice}" />
+                <TextBlock Grid.Row="5" Grid.Column="1"
+                           Classes="Text"
+                           Foreground="#000000"
+                           Text="{Binding TotalPrice}" />
+                <TextBlock Grid.Row="0" Grid.Column="2"
+                           Classes="Text"
+                           Text="{Binding Localization.Currency}" />
+                <TextBlock Grid.Row="1" Grid.Column="2"
+                           Classes="Text"
+                           Text="{Binding Localization.Currency}" />
+                <TextBlock Grid.Row="2" Grid.Column="2"
+                           Classes="Text"
+                           Text="{Binding Localization.Currency}" />
+                <TextBlock Grid.Row="3" Grid.Column="2"
+                           Classes="Text"
+                           Text="{Binding Localization.Currency}" />
+                <TextBlock Grid.Row="4" Grid.Column="2"
+                           Classes="Text"
+                           Text="{Binding Localization.Currency}" />
+                <TextBlock Grid.Row="5" Grid.Column="2"
+                           Classes="Text"
+                           Text="{Binding Localization.Currency}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

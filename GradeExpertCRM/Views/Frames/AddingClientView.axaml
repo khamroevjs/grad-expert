@@ -1,0 +1,172 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GradeExpertCRM.Views.Frames.AddingClientView">
+
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition MinHeight="50"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<TextBlock Grid.Row="0"
+				   Grid.Column="0"
+			       Grid.ColumnSpan="2"
+			       Foreground="#000000"
+			       FontFamily="Calibri"
+			       FontSize="24"
+			       Margin="20 0 0 0"
+				   Text="{Binding Localization.LabelAddingNewClient}"/>
+
+		<StackPanel Grid.Row="1" Grid.Column="0"
+					Orientation="Vertical">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.FullName}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.Name}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="1" Grid.Column="1"
+					Orientation="Vertical">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.Role}"/>
+			<Border Classes="BorderOfText">
+				<ComboBox Name="clientRole" SelectedIndex="{Binding RoleOfClient}">
+					<TextBlock Text="{Binding Localization.Client}" />
+					<TextBlock Text="Партнер"/>
+					<TextBlock Text="Страховая"/>
+				</ComboBox>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="2" Grid.Column="0" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxIndex}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.Index}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="2" Grid.Column="1" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxArea}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.Area}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="3" Grid.Column="0" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxCity}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.City}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="3" Grid.Column="1" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxAddress}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.Address}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="4" Grid.Column="0" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxPhoneNumber}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.PhoneNumber}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="4" Grid.Column="1" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxEmail}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.Email}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="5" Grid.Column="0" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxTIN}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.TIN}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="5" Grid.Column="1" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxCRR}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.CRR}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="7" Grid.Column="0" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxBank}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.Bank}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="7" Grid.Column="1" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxBIC}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.BIC}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="8" Grid.Column="0" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxPaymentAccount}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.PaymentAccount}"/>
+			</Border>
+		</StackPanel>
+		<StackPanel Grid.Row="8" Grid.Column="1" 
+					Orientation="Vertical"
+					Margin="0 10 0 0">
+			<TextBlock Classes="Label"
+					   Text="{Binding Localization.TextBoxCorrespondentAccount}"/>
+			<Border Classes="BorderOfText">
+				<TextBox VerticalAlignment="Stretch" Text="{Binding Client.CorrespondentAccount}"/>
+			</Border>
+		</StackPanel>
+
+		<Button Grid.Row="10"
+				Grid.Column="0"
+				Classes="Menu"
+				Margin="10"
+				Content="{Binding Localization.ButtonSave}"
+        Command="{Binding SaveCommand}"/>
+	</Grid>
+</UserControl>

@@ -1,0 +1,238 @@
+﻿@using GradeExpertCRM
+@using GradeExpertCRM.Models
+@model GradeExpertCRM.Models.DocumentVM
+@* Счет. Франшиза *@
+<!DOCTYPE html>
+<html lang="ru" style="font-family: Arial">
+<head>
+    <meta charset="utf-8"/>
+    <title>HTML5</title>
+
+    <style>
+		table.table-style {
+			width: 100%;
+			height: auto;
+			border-collapse: collapse;
+			/*border-spacing: 0;*/
+		}
+
+			table.table-style, table.table-style td {
+				border: 2px solid black;
+			}
+
+				table.table-style td {
+					padding: 3px;
+					width: 30px;
+					height: 30px;
+				}
+
+		.border-white {
+			border-color: white !important
+		}
+
+		.text-bottom {
+			vertical-align: bottom;
+			font-size: 0.6em;
+		}
+
+		.text-bottom-right {
+			text-align: right;
+			font-weight: bold
+		}
+
+		.cell-text-bottom {
+			position: absolute;
+			bottom: 3px;
+			font-size: 0.7em
+		}
+
+		.horizontal-line {
+			height: 3.5px;
+			border-width: 0;
+			background-color: black
+		}
+
+		.horizontal-line-2 {
+			height: 2px;
+			margin: 0;
+			border-width: 0;
+			background-color: black
+		}
+
+		.footer-style {
+			width: 100%;
+			margin: auto;
+			font-weight: bold
+		}
+
+		.footer-left {
+			width: 40%;
+			text-align: right;
+		}
+
+		.footer-right {
+			width: 40%;
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+
+<p style="font-size: 12pt" align="center">
+    Внимание! Оплата данного счета означает согласие с условиями поставки товара. Уведомление об оплате
+    обязательно, в противном случае не гарантируется наличие товара на складе. Товар отпускается по факту
+    прихода денег на р/с Поставщика, самовывозом, при наличии доверенности и паспорта.
+</p>
+
+<table class="table-style">
+    <tbody style="vertical-align: top">
+    <tr>
+        <td colspan="2" style="border-bottom-color: white">@(Model.DetailsSettings?.Bank ?? "")</td>
+        <td>БИК</td>
+        <td style="border-bottom-color: white">@(Model.DetailsSettings?.BIC ?? "")</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="text-bottom">Банк получателя</td>
+        <td>Сч. №</td>
+        <td style="border-top-color: white">@(Model.DetailsSettings?.CorrespondentAccount ?? "")</td>
+    </tr>
+    <tr>
+        <td>ИНН @(Model.DetailsSettings?.TIN ?? "")</td>
+        <td>КПП @(Model.DetailsSettings?.CRR ?? "")</td>
+        <td rowspan="3">Сч. №</td>
+        <td rowspan="3">@(Model.DetailsSettings?.PaymentAccount ?? "")</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-bottom-color: white">@(Model.DetailsSettings?.Name ?? "")</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="text-bottom" style="border-top-color: white">Получатель</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<strong style="font-size: 2em">Счет на оплату № @(DateTime.Now.ToString("ddMM") + Model.Car.Id) от @DateTime.Now.ToString("dd.MM.yyyy")</strong>
+<hr class="horizontal-line"/>
+
+@{
+    double dismantlingWorkPrice = 0;
+    double sparePartPrice = 0;
+    double dentRemovalPrice = 0;
+    double additionalWorksPrice = Model.Car.OverallCalculation.PreparingToolPrice +
+                                  Model.Car.OverallCalculation.AntiCorrosionPrice +
+                                  Model.Car.OverallCalculation.FinalProcessingPrice + 
+                                  Model.Car.OverallCalculation.TechnicalWashPrice + 
+                                  Model.Car.OverallCalculation.SalonCleaningPrice;
+    double paintingPrice = 0;
+
+    foreach (var calculation in Model.Car.Calculations)
+    {
+        dentRemovalPrice += calculation.DentPrice;
+        if (calculation.TypeOfRepair == TypeOfRepair.UnderPainting)
+        {
+            paintingPrice += calculation.PriceOfPainting;
+        }
+
+        dismantlingWorkPrice += calculation.DismantlingWorks.Where(work=>work.IsApplied).Sum(dismantlingWork => dismantlingWork.Price);
+
+        sparePartPrice += calculation.SpareParts.Sum(sparePart => sparePart.Price);
+    }
+
+    double overallPrice = dismantlingWorkPrice + sparePartPrice + dentRemovalPrice + additionalWorksPrice + paintingPrice;
+}
+
+<table style="border-spacing: 20px">
+    <tr>
+        <td>Поставщик:</td>
+        <td>
+            <strong>@(Model.DetailsSettings?.Name ?? ""), ИНН @(Model.DetailsSettings?.TIN ?? ""), КПП @(Model.DetailsSettings?.CRR ?? ""), @(Model.DetailsSettings?.Index ??"") @(Model.DetailsSettings?.City ?? ""), @(Model.DetailsSettings?.Address ??"")</strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Покупатель:</td>
+        <td>
+            <strong>
+                @(Model.Car.Client.Name ?? ""), @(Model.Car.Client.TIN != null ? $" ИНН {Model.Car.Client.TIN}," : "")@(Model.Car.Client.CRR != null ? $" КПП {Model.Car.Client.CRR}," : "")
+                @(Model.Car.Client.Index != null ? $" {Model.Car.Client.Index}," : "") @Model.Car.Client.City, @Model.Car.Client.Address
+            </strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Примечание:</td>
+        <td>
+
+            <strong>Общая стоимость ремонта: @(overallPrice) руб. Франшиза: @Model.Car.Franchise руб, оплачивается страхователем.</strong>
+        </td>
+    </tr>
+</table>
+
+<table class="table-style">
+    <tbody>
+    <tr>
+        <td>№</td>
+        <td>Товары</td>
+        <td>Кол-во</td>
+        <td>Ед. изм</td>
+        <td>Цена</td>
+        <td>Сумма</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Автомобиль @(Model.Car.Brand ?? "") @(Model.Car.Model ?? ""), VIN:@(Model.Car.VIN ?? ""), ремонт повреждений от града, номер убытка: @(Model.Car.Loss ?? "")</td>
+        <td>1</td>
+        <td>шт</td>
+        <td>@(Model.Car.Franchise)</td>
+        <td>@(Model.Car.Franchise)</td>
+    </tr>
+    <tr class="text-bottom-right">
+        <td colspan="5" class="border-white">
+            <strong>Итог:</strong>
+        </td>
+        <td class="border-white">
+            <strong>@(Model.Car.Franchise)</strong>
+        </td>
+    </tr>
+    <tr class="text-bottom-right">
+        <td colspan="5" class="border-white">
+            @if (Model.Car.OverallCalculation.TaxPercent > 0)
+            {
+                <p>С @Model.Car.OverallCalculation.TaxPercent% НДС</p>
+            }
+            else
+            {
+                <p>Без налога (НДС)</p>
+            }
+        </td>
+        <td class="border-white">-</td>
+    </tr>
+    </tbody>
+</table>
+@{
+    INumberToWordsTranslate converter = new NumberInWordsRussianCurrency(Model.Car.Franchise, false);
+    string word = converter.Translate();
+}
+<p>Всего наименований 1, на сумму @(Model.Car.Franchise) руб.</p>
+<strong>@(word). @(Model.Car.OverallCalculation.TaxPercent > 0 ? $"С {Model.Car.OverallCalculation.TaxPercent}% НДС" : "Без налога.")</strong>
+<hr class="horizontal-line">
+<br/>
+
+<table class="footer-style">
+    <tr>
+        <td>Руководитель</td>
+        <td class="footer-left">
+            Майер И. Ю.
+            <hr class="horizontal-line-2"/>
+        </td>
+        <td style="width: 5%"></td>
+        <td>Бухгалтер</td>
+        <td class="footer-right">
+            Майер И. Ю.
+            <hr class="horizontal-line-2"/>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,503 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <!--This line need for "RazorLight" library-->
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+    <None Remove="Resources\printer.png" />
+    <AvaloniaResource Include="Resources\printer.png" />
+    <None Remove="Resources\send.png" />
+    <AvaloniaResource Include="Resources\send.png" />
+    <None Remove="Resources\save.png" />
+    <AvaloniaResource Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+    <None Remove="Resources\arial.TTF" />
+    <None Remove="Resources\buttonListLeft.png" />
+    <None Remove="Resources\ButtonListRight.png" />
+    <None Remove="Resources\camera.png" />
+    <None Remove="Resources\Cars\1\01-1.png" />
+    <None Remove="Resources\Cars\1\02-1.png" />
+    <None Remove="Resources\Cars\1\03-1.png" />
+    <None Remove="Resources\Cars\1\04-1.png" />
+    <None Remove="Resources\Cars\1\05-1.png" />
+    <None Remove="Resources\Cars\1\06-1.png" />
+    <None Remove="Resources\Cars\1\07-1.png" />
+    <None Remove="Resources\Cars\1\08-1.png" />
+    <None Remove="Resources\Cars\1\09-1.png" />
+    <None Remove="Resources\Cars\1\10-1.png" />
+    <None Remove="Resources\Cars\1\11-1.png" />
+    <None Remove="Resources\Cars\1\12-1.png" />
+    <None Remove="Resources\Cars\1\13-1.png" />
+    <None Remove="Resources\Cars\1\14-1.png" />
+    <None Remove="Resources\Cars\2\01-1.png" />
+    <None Remove="Resources\Cars\2\02-1.png" />
+    <None Remove="Resources\Cars\2\03-1.png" />
+    <None Remove="Resources\Cars\2\04-1.png" />
+    <None Remove="Resources\Cars\2\05-1.png" />
+    <None Remove="Resources\Cars\2\06-1.png" />
+    <None Remove="Resources\Cars\2\07-1.png" />
+    <None Remove="Resources\Cars\2\08-1.png" />
+    <None Remove="Resources\Cars\2\09-1.png" />
+    <None Remove="Resources\Cars\2\10-1.png" />
+    <None Remove="Resources\Cars\2\11-1.png" />
+    <None Remove="Resources\Cars\2\12-1.png" />
+    <None Remove="Resources\Cars\2\13-1.png" />
+    <None Remove="Resources\Cars\2\14-1.png" />
+    <None Remove="Resources\cross.png" />
+    <None Remove="Resources\DentRemoval\hood\20.json" />
+    <None Remove="Resources\DentRemoval\hood\30.json" />
+    <None Remove="Resources\DentRemoval\hood\40.json" />
+    <None Remove="Resources\DentRemoval\others\20.json" />
+    <None Remove="Resources\DentRemoval\others\30.json" />
+    <None Remove="Resources\DentRemoval\others\40.json" />
+    <None Remove="Resources\DentRemoval\roof\20.json" />
+    <None Remove="Resources\DentRemoval\roof\30.json" />
+    <None Remove="Resources\DentRemoval\roof\40.json" />
+    <None Remove="Resources\DentRemoval\trunk\20.json" />
+    <None Remove="Resources\DentRemoval\trunk\30.json" />
+    <None Remove="Resources\DentRemoval\trunk\40.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\hood.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\roof.json" />
+    <None Remove="Resources\DismantlingWork\Cabrio\truck.json" />
+    <None Remove="Resources\DismantlingWork\Compact\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Compact\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Compact\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Compact\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Compact\hood.json" />
+    <None Remove="Resources\DismantlingWork\Compact\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Compact\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Compact\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Compact\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Compact\roof.json" />
+    <None Remove="Resources\DismantlingWork\Compact\truck.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\hood.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\roof.json" />
+    <None Remove="Resources\DismantlingWork\Coupe\truck.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\hood.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\roof.json" />
+    <None Remove="Resources\DismantlingWork\Crossover\truck.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\hood.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\roof.json" />
+    <None Remove="Resources\DismantlingWork\Hatchback\truck.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\hood.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\roof.json" />
+    <None Remove="Resources\DismantlingWork\Liftback\truck.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\hood.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\roof.json" />
+    <None Remove="Resources\DismantlingWork\Minibus\truck.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\hood.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\roof.json" />
+    <None Remove="Resources\DismantlingWork\Minivan\truck.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\hood.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\roof.json" />
+    <None Remove="Resources\DismantlingWork\Pickup\truck.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\hood.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\roof.json" />
+    <None Remove="Resources\DismantlingWork\Sedan\truck.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\hood.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\roof.json" />
+    <None Remove="Resources\DismantlingWork\SUV-and-Van\truck.json" />
+    <None Remove="Resources\DismantlingWork\SUV\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV\hood.json" />
+    <None Remove="Resources\DismantlingWork\SUV\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\SUV\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\SUV\roof.json" />
+    <None Remove="Resources\DismantlingWork\SUV\truck.json" />
+    <None Remove="Resources\DismantlingWork\Universal\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Universal\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Universal\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Universal\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Universal\hood.json" />
+    <None Remove="Resources\DismantlingWork\Universal\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Universal\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Universal\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Universal\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Universal\roof.json" />
+    <None Remove="Resources\DismantlingWork\Universal\truck.json" />
+    <None Remove="Resources\DismantlingWork\Van\front-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Van\front-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Van\front-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Van\front-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Van\hood.json" />
+    <None Remove="Resources\DismantlingWork\Van\rear-left-door.json" />
+    <None Remove="Resources\DismantlingWork\Van\rear-left-fender.json" />
+    <None Remove="Resources\DismantlingWork\Van\rear-right-door.json" />
+    <None Remove="Resources\DismantlingWork\Van\rear-right-fender.json" />
+    <None Remove="Resources\DismantlingWork\Van\roof.json" />
+    <None Remove="Resources\DismantlingWork\Van\truck.json" />
+    <None Remove="Resources\english.png" />
+    <None Remove="Resources\germany.png" />
+    <None Remove="Resources\magnifier.png" />
+    <None Remove="Resources\Plus.png" />
+    <None Remove="Resources\russian.png" />
+    <None Remove="Resources\Templates\template1.cshtml" />
+    <None Remove="Resources\Templates\template2.cshtml" />
+    <None Remove="Resources\Templates\template3.cshtml" />
+    <None Remove="Resources\Templates\template4.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+	  <PackageReference Include="Avalonia" Version="0.10.0" />
+	  <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.0" />
+	  <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
+	  <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
+	  <PackageReference Include="itext7.pdfhtml" Version="3.0.3" />
+	  <PackageReference Include="MessageBox.Avalonia" Version="1.0.5" />
+	  <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.14" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.11">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="RazorLight" Version="2.0.0-rc.3" />
+	  <PackageReference Include="ThomSoft.itext7.pdfimage" Version="1.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+	<AvaloniaResource Include="Resources\arial.TTF" />
+	<AvaloniaResource Include="Resources\buttonListLeft.png" />
+	<AvaloniaResource Include="Resources\buttonListRight.png" />
+	<AvaloniaResource Include="Resources\camera.png" />
+	<AvaloniaResource Include="Resources\Cars\1\01-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\02-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\03-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\04-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\05-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\06-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\07-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\08-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\09-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\10-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\11-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\12-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\13-1.png" />
+	<AvaloniaResource Include="Resources\Cars\1\14-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\01-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\02-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\03-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\04-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\05-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\06-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\07-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\08-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\09-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\10-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\11-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\12-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\13-1.png" />
+	<AvaloniaResource Include="Resources\Cars\2\14-1.png" />
+	<AvaloniaResource Include="Resources\cross.png" />
+	<AvaloniaResource Include="Resources\DentRemoval\hood\20.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\hood\30.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\hood\40.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\others\20.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\others\30.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\others\40.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\roof\20.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\roof\30.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\roof\40.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\trunk\20.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\trunk\30.json" />
+	<AvaloniaResource Include="Resources\DentRemoval\trunk\40.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Cabrio\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Compact\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Coupe\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Crossover\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Hatchback\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Liftback\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minibus\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Minivan\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Pickup\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Sedan\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\SUV\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Universal\truck.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\front-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\front-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\front-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\front-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\hood.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\rear-left-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\rear-left-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\rear-right-door.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\rear-right-fender.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\roof.json" />
+	<AvaloniaResource Include="Resources\DismantlingWork\Van\truck.json" />
+	<AvaloniaResource Include="Resources\english.png" />
+	<AvaloniaResource Include="Resources\gears.png" />
+	<AvaloniaResource Include="Resources\germany.png" />
+	<AvaloniaResource Include="Resources\logo.png" />
+	<AvaloniaResource Include="Resources\magnifier.png" />
+	<AvaloniaResource Include="Resources\plus.png" />
+	<AvaloniaResource Include="Resources\russian.png" />
+    <AvaloniaResource Include="Styles\Style.xaml" />	
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Templates\template1.cshtml" />
+    <EmbeddedResource Include="Resources\Templates\template2.cshtml" />
+    <EmbeddedResource Include="Resources\Templates\template4.cshtml" />
+    <EmbeddedResource Include="Resources\Templates\template5.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\front-left-door.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\front-left-fender.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\front-right-door.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\front-right-fender.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\hood.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\rear-left-door.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\rear-left-fender.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\rear-right-door.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\rear-right-fender.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\roof.json" />
+    <Resource Include="Resources\DismantlingWork\SUV-and-Van\truck.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Frames\AddingCarView.axaml.cs">
+      <DependentUpon>AddingCarView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\AddingDocumentView.axaml.cs">
+      <DependentUpon>AddingDocumentView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\AddingClientView.axaml.cs">
+      <DependentUpon>AddingClientView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\CalculatorView.axaml.cs">
+      <DependentUpon>CalculatorView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\CarView.axaml.cs">
+      <DependentUpon>CarView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\ClientView.axaml.cs">
+      <DependentUpon>ClientView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\DocumentsView.axaml.cs">
+      <DependentUpon>DocumentsView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\MailView.axaml.cs">
+      <DependentUpon>MailView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Frames\SettingsView.axaml.cs">
+      <DependentUpon>SettingsView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainView.axaml.cs">
+      <DependentUpon>MainView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SignInView.axaml.cs">
+      <DependentUpon>SignInView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Templates\template3.cshtml" />
+  </ItemGroup>
+</Project>

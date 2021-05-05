@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeExpertCRM", "GradeExpertCRM\GradeExpertCRM.csproj", "{C8167CBD-465F-4C03-B1E0-20F58110D5AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8167CBD-465F-4C03-B1E0-20F58110D5AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8167CBD-465F-4C03-B1E0-20F58110D5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8167CBD-465F-4C03-B1E0-20F58110D5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8167CBD-465F-4C03-B1E0-20F58110D5AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32159482-0080-4627-80FF-CA11AC96186A}
+	EndGlobalSection
+EndGlobal

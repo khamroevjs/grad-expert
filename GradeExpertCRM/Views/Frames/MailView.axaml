@@ -1,0 +1,37 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GradeExpertCRM.Views.Frames.MailView">
+
+	<UserControl.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="FontFamily" Value="Calibri"/>
+			<Setter Property="FontSize" Value="24"/>
+			<Setter Property="Foreground" Value="#000000"/>
+			<Setter Property="Background" Value="#FFFFFFFF"/>
+		</Style>
+		<Style Selector="Button/template/ContentPresenter">
+			<Setter Property="CornerRadius" Value="10" />
+		</Style>
+		<Style Selector="Border.BorderOfText">
+			<Setter Property="BorderBrush" Value="#E31E24"/>
+			<Setter Property="Padding" Value="5 0 5 0"/>
+			<Setter Property="Margin" Value="0 0 10 0"/>
+			<Setter Property="BorderThickness" Value="3"/>
+			<Setter Property="CornerRadius" Value="10"/>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<TextBlock Text="Underconstruction =)" Grid.Row="0" Grid.Column="0"/>
+	</Grid>
+</UserControl>

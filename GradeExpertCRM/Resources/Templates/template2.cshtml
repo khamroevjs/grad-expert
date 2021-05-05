@@ -1,0 +1,367 @@
+﻿@using System.ComponentModel
+@using System.Reflection
+@using GradeExpertCRM.Models
+@model GradeExpertCRM.Models.DocumentVM
+@* Акт выполненных работ *@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style>
+		html {
+			font-family: Arial
+		}
+
+		table.table-style, table.table-style th {
+			width: 100%;
+			height: auto;
+			border-collapse: collapse;
+			/*border-spacing: 0;*/
+		}
+
+			table.table-style, table.table-style td, table.table-style th {
+				border: 2px solid black;
+			}
+
+				table.table-style td, table.table-style th {
+					padding: 3px;
+					height: 30px;
+					width: auto;
+					/*width: 30px;*/
+				}
+
+				table.table-style th {
+					font-weight: bold;
+					text-align: center
+				}
+
+
+		.second-table {
+			text-align: center
+		}
+
+			.second-table td:nth-child(2), .second-table td:nth-child(3), .second-table td:nth-child(9) {
+				text-align: right
+			}
+
+			.second-table td:nth-child(1) {
+				text-align: left
+			}
+
+		.column-bold td:nth-child(2n+1) {
+			font-weight: bold
+		}
+
+		.line {
+			height: 1.5px;
+			border-width: 0;
+			background-color: black
+		}
+
+		.line-bold {
+			height: 2.5px;
+			border-width: 0;
+			background-color: black
+		}
+		
+		.column-3plus-text-right td:nth-child(3),
+        .column-3plus-text-right td:nth-child(4),
+        .column-3plus-text-right td:nth-child(5),
+        .column-3plus-text-right td:nth-child(6),
+        .column-3plus-text-right td:nth-child(7),
+        .column-3plus-text-right td:nth-child(8) {
+        	text-align: right
+        }
+		
+		.column-first-last-content-fit td:first-child,
+        .column-first-last-content-fit td:last-child {
+        	width: 1%;
+        	white-space: nowrap;
+        	padding-left: 8px;
+        	padding-right: 8px
+        }
+	</style>
+</head>
+<body>
+
+<table style="width: 100%">
+    <tr>
+        <td>
+            <strong>АКТ ВЫПОЛНЕННЫХ РАБОТ</strong>
+            <p>№ @Model.Car.Id ОТ @DateTime.Now.ToString("dd.MM.yyyy") Г.</p>
+        </td>
+        <td style="text-align: right">
+            @{
+                string imgSrc = "";
+                if (Model.DetailsSettings.Image != null)
+                {
+                    string base64 = Convert.ToBase64String(Model.DetailsSettings.Image);
+                    imgSrc = $"data:image/gif;base64,{base64}";
+                }
+            }
+            <img style="height: 90px" src="@imgSrc" alt=""/>
+        </td>
+    </tr>
+</table>
+
+<table class="table-style column-bold">
+    <tr>
+        <td>ЗАКАЗЧИК</td>
+        <td>@Model.Car.Client.Name?.ToUpper()</td>
+        <td>ИСПОЛНИТЕЛЬ</td>
+        <td>@Model.DetailsSettings.Name?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td>АДРЕС</td>
+        <td>@Model.Car.Client.Area?.ToUpper(), @Model.Car.Client.City?.ToUpper(), @Model.Car.Client?.Address.ToUpper()</td>
+        <td>ИНН</td>
+        <td>@(Model.DetailsSettings.TIN ?? "")</td>
+    </tr>
+    <tr>
+        <td>ТЕЛЕФОН</td>
+        <td>@(Model.Car.Client.PhoneNumber ?? "")</td>
+        <td>ОГРН</td>
+        <td>119665802806</td>
+    </tr>
+    <tr>
+        <td>E-MAIL</td>
+        <td>@Model.Car.Client.Email?.ToUpper()</td>
+        <td>АДРЕС</td>
+        <td>@(Model.DetailsSettings.Index ?? "") @Model.DetailsSettings.Area?.ToUpper(), @Model.DetailsSettings.City?.ToUpper(), @Model.DetailsSettings.Address?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td rowspan="4" colspan="2"></td>
+        <td style="font-weight: bold">БАНК</td>
+        <td style="font-weight: normal">@Model.DetailsSettings.Bank?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td>БИК</td>
+        <td>@(Model.DetailsSettings.BIC ?? "")</td>
+    </tr>
+    <tr>
+        <td>КОРР. СЧЕТ</td>
+        <td>@(Model.DetailsSettings.CorrespondentAccount ?? "")</td>
+    </tr>
+    <tr>
+        <td>РАСЧЕТНЫЙ СЧЕТ</td>
+        <td>@(Model.DetailsSettings.PaymentAccount ?? "")</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+<table class="table-style column-bold">
+    <tr>
+        <td>ТИП ПОВРЕЖДЕНИЯ</td>
+        <td>@Model.Car.TypeOfDamage?.ToUpper()</td>
+        <td>МАРКА</td>
+        <td>@Model.Car.Brand?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td>ДАТА ПРИЕМКИ</td>
+        <td>@Model.Car.DateOfInspection.ToString("dd.MM.yyyy")</td>
+        <td>МОДЕЛЬ</td>
+        <td>@Model.Car.Model?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td rowspan="2">МЕСТО ОСМОТРА</td>
+        <td rowspan="2">@Model.Car.PlaceOfInspection?.ToUpper()</td>
+        <td>ТИП КУЗОВА</td>
+        @{
+            var value = Model.Car.BodyType;
+            var field = value.GetType().GetField(value.ToString());
+            var name = field!.GetCustomAttribute<DescriptionAttribute>()!.Description;
+        }
+        <td>@name</td>
+    </tr>
+    <tr>
+        <td>ГОС. НОМЕР</td>
+        <td>@Model.Car.Number?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td rowspan="2">СТРАХОВАЯ КОМПАНИЯ</td>
+        <td rowspan="2">@Model.Car.InsuranceCompany?.ToUpper()</td>
+        <td>ПРОБЕГ</td>
+        <td>@Model.Car.Mileage КМ</td>
+    </tr>
+    <tr>
+        <td>VIM</td>
+        <td>@Model.Car.VIN?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td>НОМЕР ПОЛИСА</td>
+        <td>@Model.Car.PolicyNumber?.ToUpper()</td>
+        <td>ГОД ВЫПУСКА</td>
+        <td>@Model.Car.ReleaseYear</td>
+    </tr>
+    <tr>
+        <td>НОМЕР УБЫТКА</td>
+        <td>@Model.Car.Loss?.ToUpper()</td>
+        <td>ЦВЕТ</td>
+        <td>@Model.Car.Color?.ToUpper()</td>
+    </tr>
+    <tr>
+        <td>ОТВЕТСТВЕННЫЙ</td>
+        <td>@Model.Car.WhoMadeInspection?.ToUpper()</td>
+        <td>ФРАНШИЗА</td>
+        <td>@Model.Car.Franchise</td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+<table class="table-style column-3plus-text-right column-first-last-content-fit">
+    <tr>
+        <td colspan="7">БЕСПОКРАСОЧНОЕ УДАЛЕНИЕ ВМЯТИН ПО СИСТЕМЕ ГРАД-ЭКСПЕРТ</td>
+    </tr>
+    <tr>
+        <td>№ ПОЗИЦИИ</td>
+        <td>ДЕТАЛЬ</td>
+        <td>КОЛ-ВО</td>
+        <td>ДУ, ММ</td>
+        <td>МЕТАЛЛ</td>
+        <td>ВИД РЕМОНТА</td>
+        <td>КЛЕЕВАЯ ТЕХНИКА</td>
+        <td>СТОИМОСТЬ, РУБ</td>
+    </tr>
+    @for (int i = 0; i < Model.Car.Calculations.Count; i++)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@Model.Car.Calculations[i].ComponentName.ToUpper()</td>
+            <td>@Model.Car.Calculations[i].DentQuantity</td>
+            <td>@Model.Car.Calculations[i].DentDiameter MM</td>
+            <td>@(Model.Car.Calculations[i].IsAluminum ? "АЛЮМИНИЙ" : "СТАЛЬ")</td>
+            <td>@(Model.Car.Calculations[i].TypeOfRepair == TypeOfRepair.WithoutPainting ? "БЕЗ ПОКРАСКИ" : "ПОД ПОКРАСКУ")</td>
+            <td style="text-align: center">
+                @if (Model.Car.Calculations[i].IsAdhesive)
+                {
+                    @:&#9679;
+                }
+            </td>
+            <td>@Model.Car.Calculations[i].DentPrice</td>
+        </tr>
+    }
+</table>
+
+<br/>
+<br/>
+
+@{
+    double dismantlingWorkPrice = 0;
+    double sparePartPrice = 0;
+    double dentRemovalPrice = 0;
+    double additionalWorksPrice = Model.Car.OverallCalculation.PreparingToolPrice +
+                                  Model.Car.OverallCalculation.AntiCorrosionPrice +
+                                  Model.Car.OverallCalculation.FinalProcessingPrice+ 
+                                  Model.Car.OverallCalculation.TechnicalWashPrice + 
+                                  Model.Car.OverallCalculation.SalonCleaningPrice;
+    double paintingPrice = 0;
+
+    foreach (var calculation in Model.Car.Calculations)
+    {
+        dentRemovalPrice += calculation.DentPrice;
+        if (calculation.TypeOfRepair == TypeOfRepair.UnderPainting)
+        {
+            paintingPrice += calculation.PriceOfPainting;
+        }
+
+        dismantlingWorkPrice += calculation.DismantlingWorks.Where(work => work.IsApplied).Sum(dismantlingWork => dismantlingWork.Price);
+
+        sparePartPrice += calculation.SpareParts.Sum(sparePart => sparePart.Price);
+    }
+}
+
+<table class="table-style column-3plus-text-right column-first-last-content-fit">
+    <tr>
+        <td colspan="3">ИТОГОВАЯ КАЛЬКУЛЯЦИЯ</td>
+    </tr>
+    <tr>
+        <td>№</td>
+        <td>ОПИСАНИЕ</td>
+        <td>СТОИМОСТЬ, РУБ</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>ДЕ-/МОНТАЖ</td>
+        <td>@dismantlingWorkPrice</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>БЕСПОКРАСОЧНОЕ УДАЛЕНИЕ ВМЯТИН ПО СИСТЕМЕ ГРАД-ЭКСПЕРТ</td>
+        <td>@dentRemovalPrice</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>ДОПОЛНИТЕЛЬНЫЕ РАБОТЫ/УСЛУГИ</td>
+        <td>@additionalWorksPrice</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>ЗАПАСНЫЕ ЧАСТИ</td>
+        <td>@sparePartPrice</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>ПОКРАСКА</td>
+        <td>@paintingPrice</td>
+    </tr>
+    <tr style="text-align: right; font-weight: bold;">
+        <td colspan="2" style="border-color: white">ИТОГО:</td>
+        <td style="border: 3.5px solid black">@(dismantlingWorkPrice + sparePartPrice + dentRemovalPrice + additionalWorksPrice + paintingPrice)</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="border-color: white; text-align: right">
+            @if (Model.Car.OverallCalculation.TaxPercent > 0)
+            {
+                <p>НДС @Model.Car.OverallCalculation.TaxPercent%</p>
+            }
+            else
+            {
+                <p>НДС НЕ ПРЕДУСМОТРЕН</p>
+            }
+        </td>
+    </tr>
+</table>
+
+<br/>
+<br/>
+
+<table class="table-style">
+    <tr>
+        <td style="padding: 10px 10px 100px 10px; border-bottom-color: white">
+            Лицо, ответственное за выполненные работы.
+            Все претензии рассматриваются только при предъявлении
+            данного документа.
+        </td>
+        <td colspan="2" style="	padding: 10px 10px 100px 10px; border-bottom-color: white">
+            Все работы выполнены в срок и в полном объеме. Заказчик претензий и
+            замечаний по объему, качеству и срокам не имеет.
+            С Правилами предоставления услуг ознакомлен.
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="padding: 0 15px 10px 15px">
+            <hr class="line"/>
+            Подпись представителя исполнителя
+        </td>
+        <td align="center" style="padding: 0 15px 10px 15px; border-right-color: white">
+            <hr class="line"/>
+            Дата
+        </td>
+        <td align="center" style="padding: 0 15px 10px 15px">
+            <hr class="line"/>
+            Подпись /ФИО/ Печать представителя заказчика
+        </td>
+    </tr>
+</table>
+
+<br/>
+<hr class="line-bold"/>
+<p style="text-align:center; font-weight: bold">ООО ГРАД-ЭКСПЕРТ 620016 г.Екатеринбург, ул. Мостовая 14, info@grad-expert.ru, тел. (343) 268-58-18</p>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:local="clr-namespace:GradeExpertCRM.Views.Frames"
+             x:Class="GradeExpertCRM.Views.Frames.DocumentsView">
+
+    <UserControl.Styles>
+        <StyleInclude Source="avares://GradeExpertCRM/Styles/Style.xaml" />
+    </UserControl.Styles>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="50" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Classes="BorderOfText"
+                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                    Margin="10 0 0 10">
+                <TextBox Text="{Binding SearchString}" VerticalAlignment="Stretch" />
+            </Border>
+            <DockPanel Grid.Row="0" Grid.Column="2">
+                <Button x:Name="Search" DockPanel.Dock="Left">
+                    <Image Source="avares://GradeExpertCRM/Resources/magnifier.png" />
+                </Button>
+            </DockPanel>
+
+            <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7"
+                      Items="{Binding Documents}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Title}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock
+                                Text="{Binding DataContext.Localization.Document, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:DocumentsView}}}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CarId}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="№" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CreationDate}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock
+                                Text="{Binding DataContext.Localization.CreationData, 
+                                          RelativeSource={RelativeSource AncestorType={x:Type local:DocumentsView}}}" />
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        Command="{Binding DataContext.SaveCommand,
+										RelativeSource={RelativeSource AncestorType={x:Type local:DocumentsView}}}"
+                                        CommandParameter="{Binding}">
+                                        <Image Source="avares://GradeExpertCRM/Resources/save.png" />
+                                    </Button>
+                                    <Button
+                                        Command="{Binding DataContext.SendCommand,
+										RelativeSource={RelativeSource AncestorType={x:Type local:DocumentsView}}}"
+                                        CommandParameter="{Binding}">
+                                        <Image Source="avares://GradeExpertCRM/Resources/send.png" />
+                                    </Button>
+                                    <Button
+                                        Command="{Binding DataContext.DeleteCommand,
+										RelativeSource={RelativeSource AncestorType={x:Type local:DocumentsView}}}"
+                                        CommandParameter="{Binding}">
+                                        <Image Source="avares://GradeExpertCRM/Resources/cross.png" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Grid.ColumnSpan="2">
+                <Button x:Name="ImageButtonAddDocument"
+                        IsEnabled="{Binding IsButtonEnabled}"
+                        Command="{Binding GoAddingDocumentView}">
+                    <Image Source="avares://GradeExpertCRM/Resources/plus.png"
+                           DockPanel.Dock="Left"
+                           HorizontalAlignment="Right" />
+                </Button>
+                <Button x:Name="ButtonAddDocument"
+                        IsEnabled="{Binding IsButtonEnabled}"
+                        Command="{Binding GoAddingDocumentView}"
+                        Content="{Binding Localization.ButtonCreateDocument}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

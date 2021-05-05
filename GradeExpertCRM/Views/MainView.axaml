@@ -1,0 +1,80 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:GradeExpertCRM.ViewModels;assembly=GradeExpertCRM"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="GradeExpertCRM.Views.MainView">
+	
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<UserControl.Styles>
+		<StyleInclude Source="avares://GradeExpertCRM/Styles/Style.xaml"/>
+	</UserControl.Styles>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition MaxHeight="60" />
+			<RowDefinition Height="40"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<DockPanel Grid.Row="0">
+			 <Image Source="avares://GradeExpertCRM/Resources/logo.png" DockPanel.Dock="Left"
+					Margin="0 0 0 10"/>
+			<Button 
+				DockPanel.Dock="Right" 
+				HorizontalAlignment="Right"
+				BorderBrush="#FFFFFFFF"
+				Background="#FFFFFFFF"
+				BorderThickness="0"
+				Command="{Binding GoSettingsView}">	
+				<Image Source="avares://GradeExpertCRM/Resources/gears.png"/>
+			</Button>
+		</DockPanel>
+		
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<!-- <ColumnDefinition/> -->
+			</Grid.ColumnDefinitions>
+			
+			<Button x:Name="ButtonClient" 
+					Classes="Menu"
+					Command="{Binding GoClientWindow}" 
+					Content="{Binding Localization.ButtonClient}" 
+					Grid.Column="0"/>
+			<Button x:Name="ButtonCar" 
+					Classes="Menu"
+					Command="{Binding GoCarView}" 
+					Content="{Binding Localization.ButtonCar}" 
+					Grid.Column="1"/>
+			<Button x:Name="ButtonCalculator"
+					Classes="Menu"
+					Command="{Binding GoCalculatorView}"
+					Content="{Binding Localization.ButtonCalculator}" 
+					Grid.Column="2"/>
+			<Button x:Name="ButtonDocuments" 
+					Classes="Menu"
+					Command="{Binding GoDocumentsView}" 
+					Content="{Binding Localization.ButtonDocuments}" 
+					Grid.Column="3"/>
+			<!-- <Button x:Name="ButtonMail" -->
+			<!-- 		Classes="Menu" -->
+			<!-- 		Command="{Binding GoMailView}" -->
+			<!-- 		Content="{Binding Localization.ButtonMail}"  -->
+			<!-- 		Grid.Column="4"/> -->
+		</Grid>
+
+		<ContentControl Content="{Binding Content}" 
+						Grid.Row="2" 
+						HorizontalContentAlignment="Stretch"
+						VerticalContentAlignment="Stretch"/>
+	</Grid>
+
+</UserControl>

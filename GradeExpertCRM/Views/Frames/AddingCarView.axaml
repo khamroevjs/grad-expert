@@ -1,0 +1,264 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             x:Class="GradeExpertCRM.Views.Frames.AddingCarView">
+
+    <UserControl.Styles>
+        <StyleInclude Source="avares://GradeExpertCRM/Styles/Style.xaml" />
+    </UserControl.Styles>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="40" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition />
+            <RowDefinition MinHeight="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="400" />
+            <ColumnDefinition MinWidth="400" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Foreground="#000000"
+                   FontFamily="Calibri"
+                   FontSize="24"
+                   Margin="20 0 0 0"
+                   Text="{Binding Localization.LabelAddingNewCar}" />
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxBrand}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Brand}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxModel}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Model}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxBodyType}" />
+            <Border Classes="BorderOfText">
+                <ComboBox SelectedIndex="{Binding BodyTypeIndex}">
+                    <TextBlock Text="{Binding Localization.Compact}" />
+                    <TextBlock Text="{Binding Localization.Compartment}" />
+                    <TextBlock Text="{Binding Localization.Cabrio}" />
+                    <TextBlock Text="{Binding Localization.Sedan}" />
+                    <TextBlock Text="{Binding Localization.Hatchback}" />
+                    <TextBlock Text="{Binding Localization.StationWagon}" />
+                    <TextBlock Text="{Binding Localization.Liftback}" />
+                    <TextBlock Text="{Binding Localization.Minivan}" />
+                    <TextBlock Text="{Binding Localization.Crossover}" />
+                    <TextBlock Text="{Binding Localization.OffRoadVehicle}" />
+                    <TextBlock Text="{Binding Localization.Van}" />
+                    <TextBlock Text="{Binding Localization.PickupTruck}" />
+                </ComboBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxColor}" />
+            <Border Classes="BorderOfText">
+                <ComboBox SelectedItem="{Binding Color, Mode=TwoWay}">
+                    <TextBlock Text="Бежевый" />
+                    <TextBlock Text="Белый" />
+                    <TextBlock Text="Бордовый" />
+                    <TextBlock Text="Голубой" />
+                    <TextBlock Text="Желтый" />
+                    <TextBlock Text="Зеленый" />
+                    <TextBlock Text="Коричневый" />
+                    <TextBlock Text="Красный" />
+                    <TextBlock Text="Оранжевый" />
+                    <TextBlock Text="Синий" />
+                    <TextBlock Text="Серый" />
+                    <TextBlock Text="Фиолетовый" />
+                    <TextBlock Text="Черный" />
+                </ComboBox>
+                <!-- <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Color}" /> -->
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="VIN" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.VIN}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.CarNumber}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Number}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxMileage}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Mileage}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="0 10 0 0" Orientation="Vertical">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxOwner}" />
+            <Border Classes="BorderOfText">
+                <ComboBox VerticalAlignment="Stretch"
+                          Items="{Binding Clients}"
+                          IsDropDownOpen="{Binding IsDropDownOpen}"
+                          SelectedItem="{Binding SelectedClient}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <!--<AutoCompleteBox VerticalAlignment="Stretch" 
+					         Items="{Binding Clients}"
+							 IsDropDownOpen="{Binding IsDropDownOpen}"
+						     IsTextCompletionEnabled="True"
+						     FilterMode="Contains">
+				<AutoCompleteBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </AutoCompleteBox.ItemTemplate>
+            </AutoCompleteBox>-->
+                <!--<TextBox VerticalAlignment="Stretch" Text="{Binding Car.Client}"/>-->
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.YearOfRelease}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.ReleaseYear}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.Note}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Note}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxLoss}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Loss}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxPolicyNumber}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.PolicyNumber}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="0" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxInsuranceCompany}" />
+            <Border Classes="BorderOfText">
+                <ComboBox VerticalAlignment="Stretch"
+                          Items="{Binding InsuranceCompany}"
+                          SelectedItem="{Binding Car.InsuranceCompany}">
+                </ComboBox>
+                <!-- <TextBox VerticalAlignment="Stretch" Text="{Binding Car.InsuranceCompany}" /> -->
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxFranchise}" />
+            <Border Classes="BorderOfText">
+                <TextBox VerticalAlignment="Stretch" Text="{Binding Car.Franchise}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="0" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxDateOfInspection}" />
+            <Border Classes="BorderOfText">
+                <CalendarDatePicker SelectedDate="{Binding Car.DateOfInspection, Mode=TwoWay}" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="1"
+                    Orientation="Vertical">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxPlaceOfInspection}" />
+            <Border Classes="BorderOfText">
+                <ComboBox Items="{Binding InspectionPlaces}"
+                          SelectedItem="{Binding Car.PlaceOfInspection}"
+                          VerticalAlignment="Stretch">
+                    <!--<ComboBox.ItemTemplate>
+                  <DataTemplate>
+                      <TextBlock Text="{Binding }"></TextBlock>
+                  </DataTemplate>
+              </ComboBox.ItemTemplate>-->
+                </ComboBox>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="10" Grid.Column="0"
+                    Orientation="Vertical">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxWhoMadeInspection}" />
+            <Border Classes="BorderOfText">
+                <ComboBox Items="{Binding Inspectors}"
+                          SelectedItem="{Binding Car.WhoMadeInspection}"
+                          VerticalAlignment="Stretch" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Vertical"
+                    Margin="0 10 0 0">
+            <TextBlock Classes="Label"
+                       Text="{Binding Localization.TextBoxTypeOfDamage}" />
+            <Border Classes="BorderOfText">
+                <ComboBox SelectedItem="{Binding TypeOfDamage}">
+                    <TextBlock Text="Град" />
+                    <TextBlock Text="Парковочное повреждение" />
+                    <TextBlock Text="Вандализм" />
+                    <TextBlock Text="ДТП" />
+                    <TextBlock Text="Падение снега" />
+                    <TextBlock Text="Транспортное повреждение" />
+                    <TextBlock Text="Прочие" />
+                </ComboBox>
+                <!-- <TextBox VerticalAlignment="Stretch" Text="{Binding Car.TypeOfDamage}" /> -->
+            </Border>
+        </StackPanel>
+
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                Classes="Menu"
+                Margin="5"
+                Content="{Binding Localization.ButtonSave}"
+                Command="{Binding SaveCommand}" />
+    </Grid>
+</UserControl>

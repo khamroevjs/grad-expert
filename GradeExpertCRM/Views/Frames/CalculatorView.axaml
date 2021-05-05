@@ -1,0 +1,444 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GradeExpertCRM.ViewModels.Frames"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:local="clr-namespace:GradeExpertCRM.Views.Frames"
+             xmlns:root="clr-namespace:GradeExpertCRM"
+             xmlns:models="clr-namespace:GradeExpertCRM.Models"
+             x:Class="GradeExpertCRM.Views.Frames.CalculatorView">
+
+
+    <UserControl.Styles>
+        <StyleInclude Source="avares://GradeExpertCRM/Styles/Style.xaml" />
+    </UserControl.Styles>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition MaxHeight="50" />
+            <RowDefinition MaxHeight="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Grid.Row="0"
+                Classes="BorderOfText"
+                Margin="5 0 5 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       Source="{Binding CarImage}" />
+                <TextBlock Grid.Row="1"
+                           Grid.ColumnSpan="2"
+                           Text="{Binding CarImageDescription}"
+                           Foreground="#000000"
+                           FontFamily="Calibry"
+                           FontSize="12" />
+                <StackPanel Grid.Row="2"
+                            Grid.ColumnSpan="2">
+                    <RadioButton GroupName="Price"
+                                 IsChecked="True"
+                                 Command="{Binding ChangePriceMode}"
+                                 CommandParameter="false">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.GrandExpert}" />
+                    </RadioButton>
+                    <RadioButton GroupName="Price"
+                                 IsChecked="{Binding Calculation.IsFixPrice}"
+                                 Command="{Binding ChangePriceMode}"
+                                 CommandParameter="true">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.FixPrice}" />
+                    </RadioButton>
+                </StackPanel>
+                <Border Classes="BorderOfText"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        MaxHeight="40"
+                        Margin="0 5 0 5">
+
+                    <TextBlock VerticalAlignment="Stretch" Text="{Binding Price, Mode=TwoWay}" />
+                </Border>
+                <TextBlock Classes="Text"
+                           Grid.Row="3"
+                           Grid.Column="1"
+                           Text="{Binding Localization.Currency}" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="0"
+                Classes="BorderOfText"
+                Margin="5 0 5 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical"
+                            Margin="0 0 0 5">
+                    <TextBlock Classes="Label"
+                               Text="{Binding Localization.Quantity}" />
+                    <Border Classes="BorderOfText">
+                        <TextBox VerticalAlignment="Stretch" Text="{Binding Calculation.DentQuantity}" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical"
+                            Margin="0 5 0 5">
+                    <TextBlock Classes="Label"
+                               Text="{Binding Localization.Diameter}" />
+                    <Border Classes="BorderOfText">
+                        <ComboBox VerticalAlignment="Stretch" SelectedIndex="{Binding DentDiameterIndex}">
+                            <TextBlock Text="20" />
+                            <TextBlock Text="30" />
+                            <TextBlock Text="40" />
+                        </ComboBox>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical"
+                            Margin="0 5 0 5">
+                    <TextBlock Classes="Label"
+                               Text="{Binding Localization.NHours}" />
+                    <Border Classes="BorderOfText">
+                        <TextBox VerticalAlignment="Stretch" Text="{Binding NHours, Mode=TwoWay}"
+                                 IsEnabled="{Binding IsPriceEnabled}" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Vertical"
+                            Margin="0 5 0 0">
+                    <TextBlock Classes="Label"
+                               Text="{Binding Localization.Price}" />
+                    <Border Classes="BorderOfText">
+                        <TextBox VerticalAlignment="Stretch" Text="{Binding RemoveDentPrice, Mode=TwoWay}"
+                                 IsEnabled="{Binding IsPriceEnabled}" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="4"
+                            Margin="10 10 0 0">
+                    <RadioButton GroupName="Materials"
+                                 IsChecked="True"
+                                 Margin="0 0 0 5">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.Steel}" />
+                    </RadioButton>
+                    <RadioButton GroupName="Materials"
+                                 IsChecked="{Binding Calculation.IsAluminum}"
+                                 Margin="0 0 0 5">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.Aluminum}" />
+                    </RadioButton>
+                    <CheckBox IsChecked="{Binding Calculation.IsAdhesive}">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.Adhesive}" />
+                    </CheckBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="2" Grid.Row="0"
+                Classes="BorderOfText"
+                Margin="5 0 5 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="20" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Classes="Text"
+                           Text="{Binding Localization.Dismantling}"
+                           TextAlignment="Center" />
+
+                <DataGrid Grid.Row="1" Items="{Binding DismantlingWorks}"
+                          Margin="-6 0 -6 5" IsReadOnly="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Binding="{Binding IsApplied, Mode=TwoWay}"
+												Width="1*"/>
+                        <DataGridTextColumn Binding="{Binding Code}"
+											Width="1*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.Code, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding NHours}"
+											Width="1*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.NHours, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Price}"
+											Width="1*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.Price, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Name}"
+											Width="3*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.Description, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Column="0" Grid.Row="1"
+                    Orientation="Vertical">
+            <TextBlock Classes="Text"
+                       Text="{Binding Localization.RepairOfDents}" />
+            <TextBlock Text="{Binding DentPriceView, StringFormat={}{0} РУБ, Mode=TwoWay}"
+                       Margin="20 0 0 0" />
+
+            <TextBlock Classes="Text"
+                       Text="{Binding Localization.Dismantling}" />
+            <TextBlock Text="{Binding DismantlingPrice, StringFormat={}{0} РУБ, Mode=TwoWay}"
+                       Margin="20 0 0 0" />
+
+            <TextBlock Classes="Text"
+                       Text="{Binding Localization.SpareParts}" />
+            <TextBlock Text="{Binding SparePartsPrice, StringFormat={}{0} РУБ, Mode=TwoWay}"
+                       Margin="20 0 0 0" />
+        </StackPanel>
+
+        <Border Grid.Column="1" Grid.Row="1"
+                Classes="BorderOfText"
+                Margin="0 0 5 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="20" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Classes="Text"
+                           Text="{Binding Localization.TypeOfRepair}"
+                           TextAlignment="Center" />
+                <GridSplitter Grid.Row="1"
+                              Background="#E31E24"
+                              BorderBrush="#E31E24"
+                              Margin="-6 0 -6 0"
+                              ClipToBounds="False"
+                              IsEnabled="False" />
+                <StackPanel Grid.Row="2" Margin="0 5 0 0">
+                    <StackPanel.Resources>
+                        <root:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+                    </StackPanel.Resources>
+                    <RadioButton GroupName="Repair"
+                                 Command="{Binding SelectTypeOfRepair}"
+                                 CommandParameter="{x:Static models:TypeOfRepair.WithoutPainting}"
+                                 IsChecked="{Binding Calculation.TypeOfRepair,
+                                 Converter={StaticResource EnumToBooleanConverter},
+                                 ConverterParameter={x:Static models:TypeOfRepair.WithoutPainting}}">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.WithoutPainting}" />
+                    </RadioButton>
+                    <RadioButton GroupName="Repair"
+                                 Command="{Binding SelectTypeOfRepair}"
+                                 CommandParameter="{x:Static models:TypeOfRepair.UnderPainting}"
+                                 IsChecked="{Binding Calculation.TypeOfRepair,
+                                 Converter={StaticResource EnumToBooleanConverter},
+                                 ConverterParameter={x:Static models:TypeOfRepair.UnderPainting}}">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.UnderPainting}" />
+                    </RadioButton>
+                    <RadioButton GroupName="Repair"
+                                 Command="{Binding SelectTypeOfRepair}"
+                                 CommandParameter="{x:Static models:TypeOfRepair.Replacement}"
+                                 IsChecked="{Binding Calculation.TypeOfRepair,
+                                 Converter={StaticResource EnumToBooleanConverter},
+                                 ConverterParameter={x:Static models:TypeOfRepair.Replacement}}">
+                        <TextBlock Classes="Text"
+                                   Text="{Binding Localization.Replacement}" />
+                    </RadioButton>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="3"
+                Classes="BorderOfText"
+                Margin="5 0 5 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition />
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Classes="Text"
+                           Text="{Binding Localization.SpareParts}"
+                           TextAlignment="Center" />
+                <DataGrid Grid.Row="1" Items="{Binding SpareParts}"
+                          IsReadOnly="False"
+                          Margin="-6 0 -6 5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Code}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.Code, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Name}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.Description, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Price}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.Price, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Quantity}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock
+                                    Text="{Binding DataContext.Localization.Quantity, 
+                                              RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Command="{Binding DataContext.DeleteSparePartCommand,
+                                        RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}"
+                                        CommandParameter="{Binding}">
+                                        <Image Source="avares://GradeExpertCRM/Resources/cross.png" />
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+			
+			    <Grid Grid.Row="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+		            </Grid.ColumnDefinitions>
+				
+			        <Border Classes="BorderOfText"
+							Grid.Column="0">
+                        <TextBox VerticalAlignment="Stretch" Text="{Binding SparePart.Code}"/>
+                    </Border>
+				    <Border Classes="BorderOfText"
+							Grid.Column="1">
+                        <TextBox VerticalAlignment="Stretch" Text="{Binding SparePart.Name}"/>
+                    </Border>
+				    <Border Classes="BorderOfText"
+							Grid.Column="2">
+                        <TextBox VerticalAlignment="Stretch" Text="{Binding SparePart.Price}"/>
+                    </Border>
+		            <Border Classes="BorderOfText"
+							Grid.Column="3">
+                        <TextBox VerticalAlignment="Stretch" Text="{Binding SparePart.Quantity}"/>
+                    </Border>
+				
+			        <Button
+							Grid.Column="4"
+						    Command="{Binding DataContext.AddSparePartCommand,
+                                RelativeSource={RelativeSource AncestorType={x:Type local:CalculatorView}}}">
+                                        <Image Source="avares://GradeExpertCRM/Resources/plus.png" />
+                    </Button>
+			    </Grid>
+            </Grid>
+
+        </Border>
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="40" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Classes="Text"
+                       Margin="0 10 0 0"
+                       Text="{Binding Localization.PriceOfPainting}" />
+            <Border Grid.Column="1"
+                    Classes="BorderOfText"
+                    MaxHeight="40">
+                <TextBox VerticalAlignment="Stretch"
+                         IsEnabled="{Binding PriceOfPaintingIsEnabled}"
+                         Text="{Binding Calculation.PriceOfPainting}" />
+            </Border>
+            <TextBlock Grid.Column="2"
+                       Classes="Text"
+                       Margin="0 10 0 0"
+                       Text="{Binding Localization.Currency}" />
+        </Grid>
+
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Classes="Menu"
+                Content="{Binding Localization.ButtonSave}"
+                Margin="5 0 5 10"
+                Command="{Binding SaveCommand}" />
+
+        <Grid Grid.Column="1"
+              Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Classes="Menu"
+                    Content="{Binding Localization.Calculate}"
+                    Margin="5 0 5 10"
+                    Command="{Binding Calculate}" />
+            <Button Grid.Column="1"
+                    Classes="Menu"
+                    Content="{Binding Localization.ButtonCancel}"
+                    Margin="5 0 5 10"
+                    Command="{Binding Cancel}" />
+        </Grid>
+    </Grid>
+</UserControl>
