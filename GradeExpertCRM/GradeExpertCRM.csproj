@@ -226,20 +226,20 @@
     <None Remove="Resources\Templates\template4.cshtml" />
   </ItemGroup>
   <ItemGroup>
-	  <PackageReference Include="Avalonia" Version="0.10.0" />
-	  <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.0" />
-	  <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
-	  <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
-	  <PackageReference Include="itext7.pdfhtml" Version="3.0.3" />
-	  <PackageReference Include="MessageBox.Avalonia" Version="1.0.5" />
+	  <PackageReference Include="Avalonia" Version="0.10.11" />
+	  <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.11" />
+	  <PackageReference Include="Avalonia.Desktop" Version="0.10.11" />
+	  <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.11" />
+	  <PackageReference Include="itext7.pdfhtml" Version="3.0.5" />
+	  <PackageReference Include="MessageBox.Avalonia" Version="1.7.1" />
 	  <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.14" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.11">
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.22" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.22" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.22">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-	  <PackageReference Include="RazorLight" Version="2.0.0-rc.3" />
+	  <PackageReference Include="RazorLight" Version="2.0.0-rc.4" />
 	  <PackageReference Include="ThomSoft.itext7.pdfimage" Version="1.0.2" />
   </ItemGroup>
   <ItemGroup>

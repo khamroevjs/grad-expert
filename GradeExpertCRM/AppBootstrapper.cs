@@ -1,5 +1,4 @@
-﻿using GradeExpertCRM.Models;
-using GradeExpertCRM.Models.Data;
+﻿using GradeExpertCRM.Models.Data;
 using GradeExpertCRM.Models.Data.Repositories;
 using Splat;
 

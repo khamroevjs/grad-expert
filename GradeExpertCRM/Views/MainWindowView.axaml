@@ -1,22 +1,22 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:GradeExpertCRM.ViewModels;assembly=GradeExpertCRM"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
         x:Class="GradeExpertCRM.Views.MainWindowView"
         Icon="/Resources/logo.png"
-		Content="{Binding Content}"
-		Width="600"
-        Height="600"
-		MinWidth="800"
+        Content="{Binding Content}"
+        MinWidth="700"
+        Width="700"
         MinHeight="600"
-		SizeToContent="WidthAndHeight"
+        Height="600"
+        SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
         Title="GradeExpertCRM">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
 </Window>

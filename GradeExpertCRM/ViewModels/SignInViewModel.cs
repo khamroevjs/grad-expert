@@ -96,11 +96,11 @@ namespace GradeExpertCRM.ViewModels
             try
             {
                 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-                if (Login == "Admin" && Password == configuration["AdminPassword"])
+                if (Login == configuration["AdminLogin"] && Password == configuration["AdminPassword"])
                 {
                     BaseWindow.Content = new MainViewModel(true);
                 }
-                if (Login == "User" && Password == configuration["UserPassword"])
+                if (Login == configuration["UserLogin"] && Password == configuration["UserPassword"])
                 {
                     BaseWindow.Content = new MainViewModel(true);
                 }

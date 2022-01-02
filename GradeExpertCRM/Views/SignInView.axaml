@@ -7,83 +7,92 @@
              MinWidth="540"
              MinHeight="625"
              x:Class="GradeExpertCRM.Views.SignInView">
-	
+
     <Design.DataContext>
-      <vm:SignInViewModel/>
+        <vm:SignInViewModel />
     </Design.DataContext>
-	
-	<UserControl.Styles>
-		<StyleInclude Source="avares://GradeExpertCRM/Styles/Style.xaml"/>
-	</UserControl.Styles>
+
+    <UserControl.Styles>
+        <StyleInclude Source="avares://GradeExpertCRM/Styles/Style.xaml" />
+    </UserControl.Styles>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition MaxHeight="50"/>
-            <RowDefinition MaxHeight="50"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition MaxHeight="50" />
+            <RowDefinition MaxHeight="50" />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-		<!-- Logo -->
-		<Image Grid.Row="0"
-			   Grid.Column="1"
-			   Grid.ColumnSpan="3"
-			Source="avares://GradeExpertCRM/Resources/logo.png"/>
-		
-		<!-- Login -->
-		<TextBlock Grid.Row="2"
-				   Grid.Column="1"
-				   Classes="Label"
-				   Text="{Binding Localization.Login}"
-				   HorizontalAlignment="Right"
-				   Margin="0 10 10 0"/>
-		<Border Grid.Row="2"
-			    Grid.Column="2"
-				Classes="BorderOfText"
-				Margin="0 0 0 10">
-		    <TextBox Classes="TextBox" 
-					 Text="{Binding Login}"
-					 VerticalAlignment="Stretch"/>
-		</Border>
+        <!-- Logo -->
+        <Image Grid.Row="0"
+               Grid.Column="1"
+               Grid.ColumnSpan="3"
+               Source="avares://GradeExpertCRM/Resources/logo.png" />
 
-		<!-- Password -->
-		<TextBlock Grid.Row="3"
+        <!-- Login -->
+        <TextBlock Grid.Row="2"
                    Grid.Column="1"
-				   Classes="Label" Text="{Binding Localization.Password}"
-				   HorizontalAlignment="Right"
-				   Margin="0 10 10 0"/>
-		<Border Grid.Row="3"
+                   Classes="Label"
+                   Text="{Binding Localization.Login}"
+                   HorizontalAlignment="Right"
+                   Margin="0 10 10 0" />
+        <Border Grid.Row="2"
                 Grid.Column="2"
-				Classes="BorderOfText"
-				Margin="0 0 0 10">
-			<TextBox Text="{Binding Password}" 
-					 PasswordChar="*"/>
-		</Border>
+                Classes="BorderOfText"
+                Margin="0 0 0 10">
+            <TextBox Classes="TextBox"
+                     Text="{Binding Login}"
+                     VerticalAlignment="Stretch">
+                <TextBox.KeyBindings>
+                    <KeyBinding Gesture="Enter" Command="{Binding SignInAsync}" />
+                </TextBox.KeyBindings>
+            </TextBox>
+        </Border>
 
-		<!-- Error message -->
-		<TextBlock Grid.Row="4"
-				   Grid.Column="1"
-				   Grid.ColumnSpan="2"
-				   Classes="Error" 
-				   Text="{Binding Error}"/>
-			
-		<!-- Button Sign In -->
-		<Button Grid.Row="5" 
-				Grid.Column="2"
-				Command="{Binding SignInCommand}"
-				Classes="Menu" 
-				Content="{Binding Localization.SignIn}"
-				IsEnabled="{Binding SignInEnable}"/>
-	</Grid>
-	
+        <!-- Password -->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="1"
+                   Classes="Label" Text="{Binding Localization.Password}"
+                   HorizontalAlignment="Right"
+                   Margin="0 10 10 0" />
+        <Border Grid.Row="3"
+                Grid.Column="2"
+                Classes="BorderOfText"
+                Margin="0 0 0 10">
+            <TextBox Text="{Binding Password}"
+                     PasswordChar="*">
+                <TextBox.KeyBindings>
+                    <KeyBinding Gesture="Enter" Command="{Binding SignInAsync}" />
+                </TextBox.KeyBindings>
+            </TextBox>
+        </Border>
+
+        <!-- Error message -->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Classes="Error"
+                   Text="{Binding Error}" />
+
+        <!-- Button Sign In -->
+        <Button Grid.Row="5"
+                Grid.Column="2"
+                Command="{Binding SignInCommand}"
+                Classes="Menu"
+                Content="{Binding Localization.SignIn}"
+                IsEnabled="{Binding SignInEnable}" />
+
+    </Grid>
+
 </UserControl>
